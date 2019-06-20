@@ -1,0 +1,55 @@
+build.arch = AVR
+build.board = AVR_UNO
+build.core = arduino
+build.core.path = F:\hgc\mixly\arduino-1.7.10\hardware\arduino\avr\cores\arduino
+build.extra_flags = 
+build.f_cpu = 16000000L
+build.mcu = atmega328p
+build.path = F:\hgc\mixly\arduino-1.7.10\mixlyBuild
+build.project_name = testArduino.cpp
+build.system.path = F:\hgc\mixly\arduino-1.7.10\hardware\arduino\avr\system
+build.usb_flags = -DUSB_VID={build.vid} -DUSB_PID={build.pid} '-DUSB_MANUFACTURER={build.usb_manufacturer}' '-DUSB_PRODUCT={build.usb_product}'
+build.usb_manufacturer = "Unknown"
+build.variant = standard
+build.variant.path = F:\hgc\mixly\arduino-1.7.10\hardware\arduino\avr\variants\standard
+build.verbose = true
+build.warn_data_percentage = 75
+compiler.S.extra_flags = 
+compiler.S.flags = -c -g -x assembler-with-cpp -flto
+compiler.ar.cmd = avr-gcc-ar
+compiler.ar.extra_flags = 
+compiler.ar.flags = rcs
+compiler.c.cmd = avr-gcc
+compiler.c.elf.cmd = avr-gcc
+compiler.c.elf.extra_flags = 
+compiler.c.elf.flags = {compiler.warning_flags} -Os -flto -fuse-linker-plugin -Wl,--gc-sections
+compiler.c.extra_flags = 
+compiler.c.flags = -c -g -Os {compiler.warning_flags} -std=gnu11 -ffunction-sections -fdata-sections -MMD -flto -fno-fat-lto-objects  -w
+compiler.cpp.cmd = avr-g++
+compiler.cpp.extra_flags = 
+compiler.cpp.flags = -c -g -Os {compiler.warning_flags} -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -MMD -flto  -w
+compiler.elf2hex.cmd = avr-objcopy
+compiler.elf2hex.extra_flags = 
+compiler.elf2hex.flags = -O ihex -R .eeprom
+compiler.ldflags = 
+compiler.objcopy.cmd = avr-objcopy
+compiler.objcopy.eep.extra_flags = 
+compiler.objcopy.eep.flags = -O ihex -j .eeprom --set-section-flags=.eeprom=alloc,load --no-change-warnings --change-section-lma .eeprom=0
+compiler.path = {runtime.ide.path}/hardware/tools/avr/bin/
+compiler.size.cmd = avr-size
+compiler.warning_flags = -w
+compiler.warning_flags.all = -Wall -Wextra
+compiler.warning_flags.default = 
+compiler.warning_flags.more = -Wall
+compiler.warning_flags.none = -w
+recipe.S.o.pattern = "{compiler.path}{compiler.c.cmd}" {compiler.S.flags} -mmcu={build.mcu} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.S.extra_flags} {build.extra_flags} {includes} "{source_file}" -o "{object_file}"
+recipe.ar.pattern = "{compiler.path}{compiler.ar.cmd}" {compiler.ar.flags} {compiler.ar.extra_flags} "{build.path}/{archive_file}" "{object_file}"
+recipe.c.combine.pattern = "{compiler.path}{compiler.c.elf.cmd}" {compiler.c.elf.flags} -mmcu={build.mcu} {compiler.c.elf.extra_flags} -o "{build.path}/{build.project_name}.elf" {object_files} "{build.path}/{archive_file}" "-L{build.path}" -lm
+recipe.c.o.pattern = "{compiler.path}{compiler.c.cmd}" {compiler.c.flags} -mmcu={build.mcu} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.c.extra_flags} {build.extra_flags} {includes} "{source_file}" -o "{object_file}"
+recipe.cpp.o.pattern = "{compiler.path}{compiler.cpp.cmd}" {compiler.cpp.flags} -mmcu={build.mcu} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.cpp.extra_flags} {build.extra_flags} {includes} "{source_file}" -o "{object_file}"
+recipe.objcopy.eep.pattern = "{compiler.path}{compiler.objcopy.cmd}" {compiler.objcopy.eep.flags} {compiler.objcopy.eep.extra_flags} "{build.path}/{build.project_name}.elf" "{build.path}/{build.project_name}.eep"
+recipe.objcopy.hex.pattern = "{compiler.path}{compiler.elf2hex.cmd}" {compiler.elf2hex.flags} {compiler.elf2hex.extra_flags} "{build.path}/{build.project_name}.elf" "{build.path}/{build.project_name}.hex"
+recipe.size.pattern = "{compiler.path}{compiler.size.cmd}" -A "{build.path}/{build.project_name}.elf"
+recipe.size.regex = ^(?:\.text|\.data|\.bootloader)\s+([0-9]+).*
+recipe.size.regex.data = ^(?:\.data|\.bss|\.noinit)\s+([0-9]+).*
+recipe.size.regex.eeprom = ^(?:\.eeprom)\s+([0-9]+).*

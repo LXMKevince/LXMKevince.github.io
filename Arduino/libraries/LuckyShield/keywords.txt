@@ -1,0 +1,36 @@
+#######################################
+# Syntax Coloring Map For Lucky Library
+#######################################
+
+#######################################
+# Class (KEYWORD3)
+#######################################
+Lucky	KEYWORD3
+lucky	KEYWORD3
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+accelerometer	KEYWORD2
+environment	KEYWORD2
+oled	KEYWORD2
+magnetometer	KEYWORD2
+gpio	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+LED1	LITERAL1
+LED2	LITERAL1
+REL1	LITERAL1
+REL2	LITERAL1
+JOYD	LITERAL1
+JOYR	LITERAL1
+JOYL	LITERAL1
+JOYU	LITERAL1
+JOYC	LITERAL1
+PIR	LITERAL1
+PB1	LITERAL1
+PB2	LITERAL1

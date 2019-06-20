@@ -1,0 +1,26 @@
+<?
+import console;
+import fsys.ini;
+import string;
+var ini = fsys.ini("\config.ini");
+var appid = ini.read("Arduino","AppID"); 
+var comport=ini.read("Arduino","COM");
+var view = ini.read("Web","view"); 
+var code = request.post["code"];
+if(view=="1"){
+	console.log("Request HTTP URL...wait");
+}
+if(request.post["appid"]==appid){
+    var file=io.open("\local\write\write.ino","w");
+	file.write(code);
+	file.close();
+		if(view=="1"){
+			execute("arduino\arduino_debug --board arduino:avr:uno --port COM"+comport+" --upload ..\local\write\write.ino");
+		}else {
+			execute("arduino\arduino_debug --board arduino:avr:uno --port COM"+comport+" --upload ..\local\write\write.ino>>nul");
+		}
+		
+
+	print("done");
+};
+?>

@@ -1,0 +1,38 @@
+
+if( !request ){
+	import fsys.log;
+	import wsock.tcp.simpleHttpServer;
+	import console;
+	import crypt;
+	import fsys.ini;
+	
+	var ini = fsys.ini("config.ini");
+	var title = ini.read("Web","Title");
+	var host = ini.read("Web","Host");
+	var port =ini.read("Web","Port"); 
+
+	global.onError = function( err,over ){ 
+    	if(!over){
+        	import debug;
+        	var stack = debug.traceback(,"Call Stack",3);
+        	err =  ..string.concat(err,'\n',stack);
+    	}
+    	fsys.log.print( err );
+	} 
+
+	var server = wsock.tcp.simpleHttpServer(host,port);
+	console.setTitle(title + server.getUrl() ); 
+	console.log("Arduino server is running!")
+	
+	server.run(
+		function(response,request){
+			response.loadcode( request.path );
+		} 	
+	);
+	
+	return;
+}
+
+?>
+Arduino server is running!
+<a href="/blockly/apps/mixly/index.html?">Click here</a>

@@ -1,0 +1,22 @@
+
+{Line}:#24
+{File}:main.aardio:
+----------------------
+ 
+{Attempt to}:perform arithmetic on
+{Kind}:variable(local)
+{Name}:'title'
+{Type}:null
+Call Stack
+	main.aardio:24: in main chunk	
+
+{Line}:#24
+{File}:main.aardio:
+----------------------
+ 
+{Attempt to}:perform arithmetic on
+{Kind}:variable(local)
+{Name}:'title'
+{Type}:null
+Call Stack
+	main.aardio:24: in main chunk	

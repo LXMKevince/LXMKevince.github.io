@@ -1,0 +1,21 @@
+﻿<!-- type="company" 
+     block="block/HGC.js"
+	 generator="generator/HGC.js" 
+	 lib="HGC" 
+	 hardware="hardware/HGC"
+	 media="media/HGC" 
+	                   -->
+<script type="text/javascript" src="../../blocks/company/HGC.js"></script>
+<script type="text/javascript" src="../../generators/arduino/company/HGC.js"></script>
+<category name="HGC">
+      <block type="relay_highlow"></block>
+	  <block type="Relay_write2">
+	    <value name="PIN">
+          <shadow type="pins_digital"></shadow>
+        </value>
+		<value name="STAT">
+          <shadow type="relay_highlow">
+          </shadow>
+        </value>
+	  </block>
+</category>
